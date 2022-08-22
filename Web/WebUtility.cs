@@ -19,10 +19,16 @@ namespace Rbx2Source.Web
         public string Message;
     }
 
+    public class CdnPenderOld
+    {
+        public string Url { get; set; }
+        public bool Final { get; set; }
+    }
     public class CdnPender
     {
-        public string Url;
-        public bool Final;
+       public CdnPenderOld[]  data { get; set; }
+        public string imageUrl { get; set; }
+        public bool status { get; set; }
     }
 
     public static class WebUtility
@@ -123,8 +129,9 @@ namespace Rbx2Source.Web
             while (!final && dots.Length <= 13)
             {
                 CdnPender pender = DownloadJSON<CdnPender>(address);
-                final = pender.Final;
-                result = pender.Url;
+               // final = pender.status;
+                result = pender.imageUrl;
+
                 
                 if (!final)
                 {
