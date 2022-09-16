@@ -116,25 +116,24 @@ namespace Rbx2Source.Web
 
         public static string PendCdn(string address, bool log = true)
         {
-            string result = null;
-            bool final = false;
+           // string result = null;
+         //   bool final = false;
             string dots = "..";
 
-            while (!final && dots.Length <= 13)
+            while (dots.Length <= 13)
             {
-                CdnPender pender = DownloadJSON<CdnPender>(address);
-                final = pender.Final;
-                result = pender.Url;
+                CdnPender pender = DownloadImage<CdnPender>(address);
+             //   final = pender.Final;
+          //      result = pender.Url;
                 
-                if (!final)
-                {
+            
                     dots += ".";
 
                     if (log)
                         Rbx2Source.Print("Waiting for finalization of " + address + dots);
 
                     wait(1f);
-                }
+                
             }
 
             if (dots.Length > 13)
