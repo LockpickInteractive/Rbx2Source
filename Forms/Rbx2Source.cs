@@ -254,7 +254,6 @@ namespace Rbx2Source
 
         private void gatherSourceGames(string steamDir)
         {
-            //string steamPath = Path.Combine(steamDir, "steamapps", "common");
             string configDir = ConfigLoader();
             string steamPath = Path.Combine(configDir, "steamapps", "common");
             if (Directory.Exists(steamPath))
@@ -345,8 +344,8 @@ namespace Rbx2Source
 
             if (compilerTypeSelect.Text == "Avatar")
             {
-                assetPreviewImage = "https://www.roblox.com/headshot-thumbnail/json?width=420&height=420&format=png&userId=" + currentUser.Id;
-                compilerInput.Text = "Username:";
+                assetPreviewImage = "https://www.roblox.com/headshot-thumbnail/image?userId=" + currentUser.Id + "&width=420&height=420&format=png";
+                compilerInput.Text = "Username:"; 
                 compilerInputField.Text = currentUser.Username;
                 compilerTypeIcon.Image = Properties.Resources.Humanoid_icon;
             }
@@ -815,12 +814,13 @@ namespace Rbx2Source
                 {
                     if (assetPreview.ImageLocation != assetPreviewImage)
                     {
-                        CdnPender check = WebUtility.DownloadJSON<CdnPender>(assetPreviewImage);
+                       // CdnPender check = WebUtility.DownloadJSON<CdnPender>(assetPreviewImage);
 
-                        if (check.Final)
+                        if (true)
                         {
-                            assetPreviewImage = check.Url;
-                            assetPreview.ImageLocation = check.Url;
+                          //  assetPreviewImage = check.Url;
+                          //  assetPreview.ImageLocation = check.Url;
+                          
                         }
                         else
                         {
