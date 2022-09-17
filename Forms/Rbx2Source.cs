@@ -814,11 +814,14 @@ namespace Rbx2Source
                 {
                     if (assetPreview.ImageLocation != assetPreviewImage)
                     {
-                       // CdnPender check = WebUtility.DownloadJSON<CdnPender>(assetPreviewImage);                     
+                       // CdnPender check = WebUtility.DownloadJSON<CdnPender>(assetPreviewImage);
+
+                        if (true)
+                        {
                           //  assetPreviewImage = check.Url;
                           //  assetPreview.ImageLocation = check.Url;
-                            
-                        
+                          
+                        }
                         else
                         {
                             string currentPending = assetPreviewImage; // localize this in case it changes.
