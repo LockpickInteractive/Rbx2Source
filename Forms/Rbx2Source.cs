@@ -345,7 +345,7 @@ namespace Rbx2Source
 
             if (compilerTypeSelect.Text == "Avatar")
             {
-                assetPreviewImage = "https://www.roblox.com/headshot-thumbnail/json?width=420&height=420&format=png&userId=" + currentUser.Id;
+                assetPreviewImage = "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" + currentUser.Id + "&size=420x420&format=Png&isCircular=false";
                 compilerInput.Text = "Username:";
                 compilerInputField.Text = currentUser.Username;
                 compilerTypeIcon.Image = Properties.Resources.Humanoid_icon;
@@ -815,12 +815,12 @@ namespace Rbx2Source
                 {
                     if (assetPreview.ImageLocation != assetPreviewImage)
                     {
-                        CdnPender check = WebUtility.DownloadJSON<CdnPender>(assetPreviewImage);
-
-                        if (check.Final)
+                        CdnPender2 check = WebUtility.DownloadJSON<CdnPender2>(assetPreviewImage);
+                        
+                        if (true)
                         {
-                            assetPreviewImage = check.Url;
-                            assetPreview.ImageLocation = check.Url;
+                            assetPreviewImage = check.ImageUrl;
+                            assetPreview.ImageLocation = check.ImageUrl;
                         }
                         else
                         {

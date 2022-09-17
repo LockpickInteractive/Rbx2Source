@@ -1,6 +1,7 @@
 ﻿#pragma warning disable 0649
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Rbx2Source.Web
 {
@@ -21,8 +23,20 @@ namespace Rbx2Source.Web
 
     public class CdnPender
     {
-        public string Url;
-        public bool Final;
+        [JsonProperty("data")]
+        public List<CdnPender2> Data { get; set; }
+    }
+    
+    public class CdnPender2
+    {
+        [JsonProperty("targetId")]
+        public long TargetId { get; set; }
+
+        [JsonProperty("state")]
+        public string State { get; set; }
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl { get; set; }
     }
 
     public static class WebUtility
@@ -117,14 +131,15 @@ namespace Rbx2Source.Web
         public static string PendCdn(string address, bool log = true)
         {
             string result = null;
-            bool final = false;
+            bool final = true;
             string dots = "..";
 
             while (!final && dots.Length <= 13)
             {
-                CdnPender pender = DownloadJSON<CdnPender>(address);
-                final = pender.Final;
-                result = pender.Url;
+                CdnPender2 pender = DownloadJSON<CdnPender2>(address);
+                result = pender.ImageUrl;
+                
+                //result = pender.Url;
                 
                 if (!final)
                 {

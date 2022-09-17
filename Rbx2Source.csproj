@@ -213,6 +213,7 @@
     <EmbeddedResource Include="Resources\Meshes\Primitives\Ball.mesh" />
     <EmbeddedResource Include="Resources\Meshes\Primitives\Block.mesh" />
     <EmbeddedResource Include="Resources\Meshes\Primitives\Cylinder.mesh" />
+    <None Include=".editorconfig" />
     <None Include="Properties\app.manifest" />
     <EmbeddedResource Include="Resources\AvatarData\R15\Animations\Swim.rbxmx" />
     <EmbeddedResource Include="Resources\AvatarData\R6\Compositing\CompositLeftArm.mesh" />
@@ -279,7 +280,7 @@
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
       <Version>5.7.0</Version>
-     <!-- <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets> -->
+      <!-- <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets> -->
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="DiscordRichPresence">
