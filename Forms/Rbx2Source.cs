@@ -400,7 +400,7 @@ namespace Rbx2Source
                 {
                     AssetType assetType = asset.AssetType;
                     bool isAccessory = AssetGroups.IsTypeInGroup(assetType, AssetGroup.Accessories);
-
+                    Console.WriteLine("AssetType: " + GetEnumName(assetType));
                     if (isAccessory || assetType == AssetType.Gear)
                     {
                         assetPreview.Image = loadingImage;
