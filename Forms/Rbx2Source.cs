@@ -174,7 +174,7 @@ namespace Rbx2Source
             }
 
             Print(msgFormat);
-            if (!File.Exists(path))
+            if (!File.Exists("Test.log"))
         {
             // Test logging, this can and probably will break
             using (StreamWriter sw = File.CreateText("Test.log"))
