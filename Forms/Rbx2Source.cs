@@ -507,7 +507,7 @@ namespace Rbx2Source
                 {
                     exceptionMsg = exception.Message;
                     errorMsg += "\nError Message: " + exceptionMsg + "\n\n" +
-                                "If this error message has happened multiple times, and doesn't seem deliberate, you should totally send a screenshot of this error message to @qfoxbRBLX on Twitter.\n\n" +
+                                "If this error message has happened multiple times, and doesn't seem deliberate, you should totally send a screenshot of this error message to @qfoxbRBLX on Twitter.\n If you are using layered clothing, disable it. Rbx2Source does not currently support layered clothing.\n\n" +
                                 "STACK TRACE:\n" + outputDivider + "\n" + exception.StackTrace + "\n" + outputDivider;
                 }
             }
