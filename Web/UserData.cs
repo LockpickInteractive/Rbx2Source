@@ -62,7 +62,7 @@ namespace Rbx2Source.Web
 
         private static UserAvatar createUserAvatar(UserInfo info)
         {
-            UserAvatar avatar = WebUtility.DownloadRbxApiJSON<UserAvatar>($"/v1/users/{info.Id}/avatar", "avatar");
+            UserAvatar avatar = WebUtility.DownloadAvatarApiJSON<UserAvatar>($"/v1/users/{info.Id}/avatar", "avatar");
             avatar.UserExists = true;
             avatar.UserInfo = info;
 
