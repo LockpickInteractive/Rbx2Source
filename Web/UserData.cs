@@ -73,7 +73,7 @@ namespace Rbx2Source.Web
         {
             try
             {
-                UserInfo info = WebUtility.DownloadRbxApiJSON<UserInfo>("Users/" + userId);
+                UserInfo info = WebUtility.DownloadUsersApiJSON<UserInfo>("v1/users/" + userId);
                 return createUserAvatar(info);
             }
             catch
@@ -89,7 +89,7 @@ namespace Rbx2Source.Web
                 UserInfo info = WebUtility.DownloadRbxApiJSON<UserInfo>("Users/Get-By-Username?username=" + userName);
                 return createUserAvatar(info);
             }
-            catch
+            catch   
             {
                 return new UserAvatar();
             }

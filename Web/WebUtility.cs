@@ -130,6 +130,11 @@ namespace Rbx2Source.Web
             string url = "https://" + apiServer + ".roblox.com/" + subAddress;
             return DownloadJSON<T>(url);
         }
+        public static T DownloadUsersApiJSON<T>(string subAddress, string apiServer = "users")
+        {
+            string url = "https://" + apiServer + ".roblox.com/" + subAddress;
+            return DownloadJSON<T>(url);
+        }
 
         public static string PendCdn(string address, bool log = true) // This is the image downloading Code
         {
