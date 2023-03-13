@@ -174,6 +174,8 @@ namespace Rbx2Source
             }
 
             Print(msgFormat);
+            using StreamWriter file = new("Rbx2Source.log", append: true);
+              await file.WriteLineAsync(msgFormat);
         }
 
         public static void SetDebugImage(Image img)
