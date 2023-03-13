@@ -174,8 +174,14 @@ namespace Rbx2Source
             }
 
             Print(msgFormat);
-            using StreamWriter file = new("Rbx2Source.log", append: true);
-              await file.WriteLineAsync(msgFormat);
+            if (!File.Exists(path))
+        {
+            // Test logging, this can and probably will break
+            using (StreamWriter sw = File.CreateText("Test.log"))
+            {
+                sw.WriteLine(msgFormat);
+            }	
+        }
         }
 
         public static void SetDebugImage(Image img)
