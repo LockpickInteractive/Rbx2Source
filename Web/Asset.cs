@@ -160,9 +160,9 @@ namespace Rbx2Source.Web
                     http.Headers.Set(HttpRequestHeader.UserAgent, "RobloxStudio/WinInet");
                     asset = new Asset() { Id = assetId };
                     
-                    try
+                    try 
                     {
-                        string productInfoJson = http.DownloadString("http://api.roblox.com/marketplace/productinfo?assetId=" + assetId);
+                        string productInfoJson = http.DownloadString("https://economy.roblox.com/v2/assets/" + assetId + "/details"); // Legacy URL : http://api.roblox.com/marketplace/productinfo?assetId=
                         asset.ProductInfo = JsonConvert.DeserializeObject<ProductInfo>(productInfoJson);
                         asset.ProductInfo.WindowsSafeName = FileUtility.MakeNameWindowsSafe(asset.ProductInfo.Name);
                         asset.AssetType = asset.ProductInfo.AssetTypeId;
