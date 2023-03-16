@@ -1,4 +1,5 @@
 ﻿#pragma warning disable 0649
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Rbx2Source.Web
@@ -62,7 +63,8 @@ namespace Rbx2Source.Web
 
         private static UserAvatar createUserAvatar(UserInfo info)
         {
-            UserAvatar avatar = WebUtility.DownloadAvatarApiJSON<UserAvatar>($"/v1/users/{info.Id}/avatar", "avatar");
+            var data = info.data[0];
+            UserAvatar avatar = WebUtility.DownloadAvatarApiJSON<UserAvatar>($"/v1/users/{info.Id}/avatar");
             avatar.UserExists = true;
             avatar.UserInfo = info;
 
@@ -86,13 +88,22 @@ namespace Rbx2Source.Web
         {
             try
             {
-                UserInfo info = WebUtility.DownloadRbxApiJSON<UserInfo>("Users/Get-By-Username?username=" + userName);
+                var postData = JsonConvert.SerializeObject(new
+                {
+                    usernames = new[] { userName },
+                    excludeBannedUsers = true
+                });
+                string subAddress = $"v1/usernames/users";
+                string apiServer = "users";
+                UserInfo info = WebUtility.PostUsersApiJSON<UserInfo>(subAddress, apiServer, postData);
                 return createUserAvatar(info);
             }
-            catch   
+            catch
             {
                 return new UserAvatar();
             }
         }
+
+
     }
 }

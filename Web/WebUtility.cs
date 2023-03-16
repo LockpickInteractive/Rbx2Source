@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -119,6 +120,16 @@ namespace Rbx2Source.Web
             var json = Encoding.UTF8.GetString(content);
             return JsonConvert.DeserializeObject<T>(json);
         }
+        public static T UploadJSON<T>(string address, string postData)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("Roblox");
+            var content = new StringContent(postData, Encoding.UTF8, "application/json");
+            var response = client.PostAsync(address, content).Result;
+            var responseContent = response.Content.ReadAsStringAsync().Result;
+            Console.WriteLine(responseContent);
+            return JsonConvert.DeserializeObject<T>(responseContent);
+        }
 
         public static T DownloadRbxApiJSON<T>(string subAddress, string apiServer = "api") // TODO: Replace this code to use the newer roblox API endpoints
         {
@@ -135,7 +146,11 @@ namespace Rbx2Source.Web
             string url = "https://" + apiServer + ".roblox.com/" + subAddress;
             return DownloadJSON<T>(url);
         }
-
+        public static T PostUsersApiJSON<T>(string subAddress, string apiServer = "users", string postData = null)
+        {
+            string url = "https://" + apiServer + ".roblox.com/" + subAddress;
+            return UploadJSON<T>(url, postData);
+        }
         public static string PendCdn(string address, bool log = true) // This is the image downloading Code
         {
             string result = null;
