@@ -17,13 +17,15 @@ namespace Rbx2Source.Web
         public float BodyType;
     }
 
-    public class UserInfo
-    {
-        public long Id;
-        public bool IsOnline;
-        public string Username;
-        public List<WebApiError> Errors;
-    }
+   public class UserInfo
+{
+    public long Id { get; set; }
+    public bool HasVerifiedBadge { get; set; }
+    public string Name { get; set; }
+    public string DisplayName { get; set; }
+    public List<WebApiError> Errors;
+}
+
 
     public class WebBodyColors
     {
@@ -63,7 +65,6 @@ namespace Rbx2Source.Web
 
         private static UserAvatar createUserAvatar(UserInfo info)
         {
-            var data = info.data[0];
             UserAvatar avatar = WebUtility.DownloadAvatarApiJSON<UserAvatar>($"/v1/users/{info.Id}/avatar");
             avatar.UserExists = true;
             avatar.UserInfo = info;
@@ -95,7 +96,7 @@ namespace Rbx2Source.Web
                 });
                 string subAddress = $"v1/usernames/users";
                 string apiServer = "users";
-                UserInfo info = WebUtility.PostUsersApiJSON<UserInfo>(subAddress, apiServer, postData);
+                UserInfo info = WebUtility.PostUsersApiJSON<UserInfo>(subAddress, postData);
                 return createUserAvatar(info);
             }
             catch
