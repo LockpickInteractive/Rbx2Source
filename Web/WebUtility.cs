@@ -146,7 +146,7 @@ namespace Rbx2Source.Web
             string url = "https://" + apiServer + ".roblox.com/" + subAddress;
             return DownloadJSON<T>(url);
         }
-        public static T PostUsersApiJSON<T>(string subAddress, string apiServer = "users", string postData)
+        public static T PostUsersApiJSON<T>(string subAddress, string apiServer = "users", string postData = null)
         {
             string url = "https://" + apiServer + ".roblox.com/" + subAddress;
             return UploadJSON<T>(url, postData);
