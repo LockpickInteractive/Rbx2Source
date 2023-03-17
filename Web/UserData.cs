@@ -101,21 +101,23 @@ namespace Rbx2Source.Web
             excludeBannedUsers = true
         });
         string subAddress = $"v1/usernames/users";
-        UserInfo info = WebUtility.PostUsersApiJSON<UserInfo>(subAddress, postData);
+        UserApiResponse response = WebUtility.PostUsersApiJSON<UserApiResponse>(subAddress, postData);
 
         // Check if data is empty
-        if (info.data == null || info.data.Length == 0)
+        if (response.Data == null || response.Data.Length == 0)
         {
             return new UserAvatar();
         }
 
-        return createUserAvatar(info);
+        UserInfo userInfo = response.Data[0];
+        return createUserAvatar(userInfo);
     }
     catch (Exception ex)
     {
         return new UserAvatar();
     }
 }
+
 
 
     }
