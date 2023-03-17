@@ -329,7 +329,7 @@ namespace Rbx2Source
                 // assetPreviewImage = "https://www.roblox.com/headshot-thumbnail/json?width=420&height=420&format=png&userId=" + currentUser.Id; // Previous logic
                 assetPreviewImage = "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" + currentUser.Id + "&size=420x420&format=Png&isCircular=false";
                 compilerInput.Text = "Username:";
-                compilerInputField.Text = currentUser.Username;
+                compilerInputField.Text = currentUser.Name;
                 compilerTypeIcon.Image = Properties.Resources.Humanoid_icon;
                 rpcClient.SetPresence(new RichPresence()
                 {
@@ -385,7 +385,9 @@ namespace Rbx2Source
             }
         }
 
-        private bool TrySetAssetId(object value)
+
+
+            private bool TrySetAssetId(object value)
         {
             string text = value.ToString();
 
@@ -552,7 +554,7 @@ namespace Rbx2Source
             if (compilerTypeSelect.Text == "Avatar")
             {
                 var assembler = new CharacterAssembler();
-                var userAvatar = UserAvatar.FromUsername(currentUser.Username);
+                var userAvatar = UserAvatar.FromUsername(currentUser.Name);
                 assemble = new Func<AssemblerData>(() => assembler.Assemble(userAvatar));
             }
             else

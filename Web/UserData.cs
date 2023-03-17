@@ -17,14 +17,19 @@ namespace Rbx2Source.Web
         public float BodyType;
     }
 
-   public class UserInfo
-{
-    public long Id { get; set; }
-    public bool HasVerifiedBadge { get; set; }
-    public string Name { get; set; }
-    public string DisplayName { get; set; }
-    public List<WebApiError> Errors;
-}
+    public class UserApiResponse
+    {
+        public UserInfo[] Data { get; set; }
+    }
+
+    public class UserInfo
+    {
+        public long Id { get; set; }
+        public bool HasVerifiedBadge { get; set; }
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
+    }
+
 
 
     public class WebBodyColors
@@ -95,7 +100,7 @@ namespace Rbx2Source.Web
                     excludeBannedUsers = true
                 });
                 string subAddress = $"v1/usernames/users";
-                string apiServer = "users";
+                //string apiServer = "users";
                 UserInfo info = WebUtility.PostUsersApiJSON<UserInfo>(subAddress, postData);
                 return createUserAvatar(info);
             }
