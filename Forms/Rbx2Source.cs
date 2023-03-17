@@ -365,27 +365,25 @@ namespace Rbx2Source
             }
         }
 
-        private bool TrySetUsername(string userName)
-        {
-            UserAvatar avatar = UserAvatar.FromUsername(userName);
+       private bool TrySetUsername(string userName) // TODO: Fix Formatting, appears weird in VSCode web editor
+{
+    UserAvatar avatar = UserAvatar.FromUsername(userName);
 
-            if (avatar.UserExists)
-            {
-                Settings.SaveSetting("Username", userName);
-                assetPreview.Image = loadingImage; // Set the image to Loading.gif
-                currentUser = avatar.UserInfo;
-                return true;
-            }
-            else
-            {
-                showError("An error occurred while trying to fetch this user!\n" +
-                          "Either the user does not exist, is banned or something went wrong with the request.");
+    if (avatar.UserInfo != null) // Check if the avatar is not empty
+    {
+        Settings.SaveSetting("Username", userName);
+        assetPreview.Image = loadingImage; // Set the image to Loading.gif
+        currentUser = avatar.UserInfo;
+        return true;
+    }
+    else
+    {
+        showError("An error occurred while trying to fetch this user!\n" +
+                  "Either the user does not exist, is banned or something went wrong with the request.");
 
-                return false;
-            }
-        }
-
-
+        return false;
+    }
+}
 
             private bool TrySetAssetId(object value)
         {

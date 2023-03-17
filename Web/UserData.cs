@@ -91,24 +91,31 @@ namespace Rbx2Source.Web
         }
 
         public static UserAvatar FromUsername(string userName)
+{
+    try
+    {
+        var postData = JsonConvert.SerializeObject(new
         {
-            try
-            {
-                var postData = JsonConvert.SerializeObject(new
-                {
-                    usernames = new[] { userName },
-                    excludeBannedUsers = true
-                });
-                string subAddress = $"v1/usernames/users";
-                //string apiServer = "users";
-                UserInfo info = WebUtility.PostUsersApiJSON<UserInfo>(subAddress, postData);
-                return createUserAvatar(info);
-            }
-            catch
-            {
-                return new UserAvatar();
-            }
+            usernames = new[] { userName },
+            excludeBannedUsers = true
+        });
+        string subAddress = $"v1/usernames/users";
+        UserInfo info = WebUtility.PostUsersApiJSON<UserInfo>(subAddress, postData);
+
+        // Check if data is empty
+        if (info.data == null || info.data.Length == 0)
+        {
+            return new UserAvatar();
         }
+
+        return createUserAvatar(info);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred: {ex.Message}");
+        return new UserAvatar();
+    }
+}
 
 
     }
